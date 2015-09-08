@@ -1,5 +1,5 @@
 # alon:lag-methods
-[![Build Status](https://secure.travis-ci.org/MsaterAM/meteor-lag-methods.png?branch=master)](https://travis-ci.org/MsaterAM/meteor-lag-methods)
+[![Build Status](https://travis-ci.org/MasterAM/meteor-lag-methods.svg?branch=master)](https://travis-ci.org/MasterAM/meteor-lag-methods)
 
 A configurable dev-only package that adds lag to your Meteor methods.
 
