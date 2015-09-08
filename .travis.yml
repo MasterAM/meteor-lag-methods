@@ -1,4 +1,4 @@
-# Travis Badge Markdown (add to README.md): [![Build Status](https://secure.travis-ci.org/MsaterAM/meteor-lag-methods.png?branch=master)](https://travis-ci.org/MsaterAM/meteor-lag-methods)
+# Travis Badge Markdown (add to README.md): [![Build Status](https://secure.travis-ci.org/MasterAM/meteor-lag-methods.png?branch=master)](https://travis-ci.org/MasterAM/meteor-lag-methods)
 sudo: required
 language: node_js
 node_js:

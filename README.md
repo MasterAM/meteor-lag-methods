@@ -11,11 +11,9 @@ $ meteor add alon:lag-methods
 ```
 
 ## Indroduction
-A configurable dev-only package that adds delay to your Meteor methods.
+Since development is often done on a powerful local machine without much load, the method call round-trip is usually very quick. Any UI changes that reflect the intermediate state often appear as a short flash of content before the view renders with the new data or state.
 
-Since development is often done on a powerful local machine without much load, the method call round-trip is often very quick. Any UI changes that reflect the intermediate state often appear as a short flash of content before the view renders with the new data or state.
-
-This behavior is defferent from the one that will be experienced by users of the production server, and therefore developers sometimes resort to quick and dirty ways for adding delay to their method calls (by calling `Meteor._sleepForMs()` - or dirtier solutions - directly in method code). If left alone and not cleaned up, it could eventually cause undesired delay of the deployed application.
+This behavior is different from the one that will be experienced by users of the production server, and therefore developers sometimes resort to quick and dirty ways for adding delay to their method calls (by calling `Meteor._sleepForMs()` - or dirtier solutions - directly in method code). If left alone and not cleaned up, it could eventually cause undesired delay of the deployed application.
 
 This package is intended to provide a cleaner alternative to those dirty fixes.
 

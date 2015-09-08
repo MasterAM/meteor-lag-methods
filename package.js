@@ -1,8 +1,8 @@
 Package.describe({
   name: 'alon:lag-methods',
   summary: 'A configurable dev-only package that adds lag to your Meteor methods.',
-  version: '0.1.0',
-  git: 'https://github.com/MsaterAM/meteor-lag-methods',
+  version: '0.1.1',
+  git: 'https://github.com/MasterAM/meteor-lag-methods',
   documentation: 'README.md',
   debugOnly: true
 });
