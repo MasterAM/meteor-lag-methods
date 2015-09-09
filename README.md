@@ -1,7 +1,7 @@
 # alon:lag-methods
 [![Build Status](https://travis-ci.org/MasterAM/meteor-lag-methods.svg?branch=master)](https://travis-ci.org/MasterAM/meteor-lag-methods)
 
-A configurable dev-only package that adds lag to your Meteor methods.
+A configurable package that adds delay to method calls on your development machine.
 
 
 ## Installation
@@ -56,8 +56,14 @@ Package['alon:lag-methods'].LagMethods
 ```
 It has the following methods:
 
+### getDefaultDelay() 
 
-#### setDefaultDelay(delay)
+Gets the current default delay
+
+**Returns**: `Number`, current delay, in ms
+
+
+### setDefaultDelay(delay) 
 
 Set the default delay for methods.
 
@@ -74,7 +80,18 @@ Package['alon:lag-methods'].LagMethods.setDefaultDelay(1500);
 ```
 
 
-#### setDelaysForMethods(delays, replace)
+### getDelayForMethod(name) 
+
+Get the delay for a given method name (or the default delay if it is not explicitly set).
+
+**Parameters**
+
+**name**: `String`, the method name
+
+**Returns**: `Number`, the delay, in ms
+
+
+### setDelaysForMethods(delays, replace) 
 
 Set the delays for specific methods.
 Specify the delays in an object which keys are method names:
@@ -102,3 +119,10 @@ $ cd meteor-lag-methods
 $ meteor test-packages ./
 ```
 and pointing your browser to the relevant URL (usually `http://localhost:3000`).
+
+## Changelog
+
+See the [changelog file].
+
+
+[changelog file]: CHANGELOG.md "changelog file"
