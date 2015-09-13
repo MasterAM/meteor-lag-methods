@@ -1,7 +1,7 @@
 Package.describe({
   name: 'alon:lag-methods',
   summary: 'Adds delay to method calls on your development machine.',
-  version: '0.2.0',
+  version: '0.3.0',
   git: 'https://github.com/MasterAM/meteor-lag-methods',
   documentation: 'README.md',
   debugOnly: true
@@ -9,8 +9,14 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.1');
-  api.use('check');
-  api.addFiles('lib/lag-methods.js', 'server');
+  api.use(['check', 'underscore', 'reactive-dict', 'mongo']);
+  api.addFiles([
+    'lib/globals.js',
+    'lib/lag-methods.js',
+    'lib/caching.js',
+    'lib/configurator.js',
+    'lib/bootstrap.js'
+  ], 'server');
   api.export('LagMethods', 'server');
 });
 
