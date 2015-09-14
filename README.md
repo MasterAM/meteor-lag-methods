@@ -44,7 +44,7 @@ All settings are **optional**.
 
 All methods wll have `defalutDelay`, except for the ones that are explicitly set in `methods`, or the ones that are `exclude`d.
 
-```json
+```
 {
   "lagMethods": {
     "disable": <Boolean, default: false>,
