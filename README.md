@@ -18,7 +18,7 @@ You can configure it to only delay certain methods for the amount of time you ch
 
 It is recommended to use [lag-console] in order to control it.
 
-## Indroduction
+## Introduction
 Since development is often done on a powerful local machine without much load, the method call round-trip is usually very quick. Any UI changes that reflect the intermediate state often appear as a short flash of content before the view renders with the new data or state.
 
 This behavior is different from the one that will be experienced by users of the production server, and therefore developers sometimes resort to quick and dirty ways for adding delay to their method calls (by calling `Meteor._sleepForMs()` - or dirtier solutions - directly in method code). If left alone and not cleaned up, it could eventually cause undesired delay of the deployed application.
@@ -42,7 +42,7 @@ This package uses the `lagMethods` property of the configuration file.
 
 All settings are **optional**.
 
-All methods wll have `defalutDelay`, except for the ones that are explicitly set in `methods`, or the ones that are `exclude`d.
+All methods wll have `defaultDelay`, except for the ones that are explicitly set in `methods`, or the ones that are `exclude`d.
 
 ```
 {
@@ -58,6 +58,10 @@ All methods wll have `defalutDelay`, except for the ones that are explicitly set
     "exclude": [
       'excludedMethod1',
       'excludedMethod2'
+    ],
+    "forceBlocking": [
+      'blockingMethod1',
+      'blockingMethod2'
     ],
     "log": <Boolean, default: false>,
     "unblock": <Boolean, default: true>
@@ -103,6 +107,14 @@ This setting is `true` by default.
 **exclude**: `Array` 
 
 An array of method names that should not be delayed.
+
+**forceBlocking**: `Array` 
+
+An array of method names that should not be unblocked (should not run in parallel to other method) even if the _unblock_ option is switched on.
+
+Some methods, such as `login()` or `logout()`, cannot be unblocked and trying to do so produces an error.
+
+By default, `login()` and `logout()` are forced to be blocking and any other method specified in this array will be added to the list.
 
 **log**: `Boolean` 
 

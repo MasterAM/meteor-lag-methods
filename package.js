@@ -1,7 +1,7 @@
 Package.describe({
   name: 'alon:lag-methods',
   summary: 'Adds delay to method calls on your development machine.',
-  version: '0.3.0',
+  version: '0.4.0',
   git: 'https://github.com/MasterAM/meteor-lag-methods',
   documentation: 'README.md',
   debugOnly: true
