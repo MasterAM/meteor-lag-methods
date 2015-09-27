@@ -163,13 +163,13 @@ The delays can be set dynamically by calling the API configuration functions ava
 
 Since this package is a `devOnly` package, it does not create any top-level global variable, so the configuration object is available in the `Package` global object:
 ```js
-Package['alon:lag-methods'].LagMethods
+Package['alon:lag-methods'].API
 ```
 
 The following examples use the shorthand `LagMethods` instead:
 
 ```js
-var LagMethods = Package['alon:lag-methods'].LagMethods;
+var LagMethods = Package['alon:lag-methods'].API;
 ```
 
 It has the following methods:
