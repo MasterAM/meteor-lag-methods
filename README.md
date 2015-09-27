@@ -46,28 +46,34 @@ All methods wll have `defaultDelay`, except for the ones that are explicitly set
 
 ```
 {
-  "lagMethods": {
-    "disable": <Boolean, default: false>,
-    "persist": <Boolean, default: false>,
-    "defaultDelay": <Integer, default: 2000>,
-    "methods": {
-      "methodName1": delay1,
-      "methodName2": delay2
+  "lagConfig": {
+    "base": {
+      "disable": <Boolean, default: false>,
+      "persist": <Boolean, default: false>,
+      "defaultDelay": <Integer, default: 2000>,
+      "usePredefinedExcludes": <Boolean, default: true>,
+      "log": <Boolean, default: false>,
+      "unblock": <Boolean, default: true>
     },
-    "usePredefinedExcludes": <Boolean, default: true>,
-    "exclude": [
-      'excludedMethod1',
-      'excludedMethod2'
-    ],
-    "forceBlocking": [
-      'blockingMethod1',
-      'blockingMethod2'
-    ],
-    "log": <Boolean, default: false>,
-    "unblock": <Boolean, default: true>
-  },
+    "methods": {
+      "delays": {
+        "methodName1": delay1,
+        "methodName2": delay2
+      },
+      "exclude": [
+        'excludedMethod1',
+        'excludedMethod2'
+      ],
+      "forceBlocking": [
+        'blockingMethod1',
+        'blockingMethod2'
+      ]
+    }
+  }
 }
 ```
+##### base
+
 **disable**: `Boolean` 
 
 If set to `true`, the package is deactivated.
@@ -88,12 +94,6 @@ This setting is `false` by default.
 
 If set, it will be the default delay for methods without specific settings.
 
-**methods**: `Object` 
-
-An object with method names as keys and desired delays in millisecond as values.
-
-Overrides default delays.
-
 **usePredefinedExcludes**: `Boolean` 
 
 The package contains a built-in list of method names that should probably not be delayed even when the package is active.
@@ -103,18 +103,6 @@ Those methods are generally related to testing and other aspects that do not aff
 If set to `true`, those methods will not be delayed. 
 
 This setting is `true` by default.
-
-**exclude**: `Array` 
-
-An array of method names that should not be delayed.
-
-**forceBlocking**: `Array` 
-
-An array of method names that should not be unblocked (should not run in parallel to other method) even if the _unblock_ option is switched on.
-
-Some methods, such as `login()` or `logout()`, cannot be unblocked and trying to do so produces an error.
-
-By default, `login()` and `logout()` are forced to be blocking and any other method specified in this array will be added to the list.
 
 **log**: `Boolean` 
 
@@ -131,22 +119,47 @@ If set to `true`, `this.unblock()` is called before setting the delay, so method
 This setting is `true` by default.
 
 
+##### methods
+
+**delays**: `Object` 
+
+An object with method names as keys and desired delays in millisecond as values.
+
+Overrides default delays.
+
+**exclude**: `Array` 
+
+An array of method names that should not be delayed.
+
+**forceBlocking**: `Array` 
+
+An array of method names that should not be unblocked (should not run in parallel to other method) even if the _unblock_ option is switched on.
+
+Some methods, such as `login()` or `logout()`, cannot be unblocked and trying to do so produces an error.
+
+By default, `login()` and `logout()` are forced to be blocking and any other method specified in this array will be added to the list.
+
 #### example
 Create a json file (e.g, _config/development-settings.json_, but you can put it anywhere) that contains a top-level property called `lagMethods`.
 
 ```json
 {
-  "lagMethods": {
-    "defaultDelay": 1000,
-    "methods": {
-      "bar": 500
+  "lagConfig": {
+    "base": {
+      "defaultDelay": 1000,
     },
-    "exclude": [
-      "baz"
-    ]
+    "methods": {
+      "delays":{
+       "bar": 500
+     },
+      "exclude": [
+        "baz",
+      ]
+    }
   }
 }
 ```
+
 Then, run Meteor using:
 ```sh
 $ meteor run --settings config/development-settings.json
