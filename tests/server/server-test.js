@@ -34,36 +34,37 @@ Meteor.methods({
 //test.ok(doc)
 //test.fail(doc)
 //test.equal(a, b, msg)
-
+var api = Package['alon:lag-base'].API;
 function callSync(name, delay, test) {
   var tStart = new Date().getTime();
-  var result = Meteor.call('foo', 1, '1');
+  var result = Meteor.call(name, 1, '1');
   var dt = new Date().getTime() - tStart;
   test.isTrue(dt >= delay, name + ' method call should take more than ' + delay + ' ms');
   test.equal(result, true, 'return value is as expected');
 }
 
 Tinytest.add('make sure that the configurator is available', function(test) {
-  test.isTrue(typeof Package['alon:lag-methods'].LagMethods === 'object', 'the configurator is available');
+  test.isTrue(typeof Package['alon:lag-methods'].methodConfigurator === 'object', 'the configurator is available');
 });
 
 Tinytest.add("default delay on sync server calls", function(test) {
-  callSync('foo', 2000, test);
-  callSync('bar', 2000, test);
-  callSync('baz', 2000, test);
+  var defaultDelay = api.getDefaultDelay();
+  callSync('foo', defaultDelay, test);
+  callSync('bar', defaultDelay, test);
+  callSync('baz', defaultDelay, test);
 });
 
 
 Tinytest.add("modified delay on sync server calls", function(test) {
-  Package['alon:lag-methods'].LagMethods.setDefaultDelay(lagDefault);
-  callSync('foo', lagDefault, test);
-  callSync('bar', lagDefault, test);
-  callSync('baz', lagDefault, test);
+  api.setDefaultDelay(newDefaultDelay);
+  callSync('foo', newDefaultDelay, test);
+  callSync('bar', newDefaultDelay, test);
+  callSync('baz', newDefaultDelay, test);
 });
 
 Tinytest.add("per-method delay on sync server calls", function(test) {
-  Package['alon:lag-methods'].LagMethods.setDelaysForMethods(lagConfig);
-  callSync('foo', lagConfig.foo, test);
-  callSync('bar', lagConfig.bar, test);
-  callSync('baz', lagDefault, test);
+  api.setDelaysFor('method', customDelays);
+  callSync('foo', customDelays.foo, test);
+  callSync('bar', customDelays.bar, test);
+  callSync('baz', newDefaultDelay, test);
 });

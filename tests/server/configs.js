@@ -1,6 +1,6 @@
-lagConfig = {
+customDelays = {
   foo: 3500,
   bar: 1400
 };
 
-lagDefault = 1000;
+newDefaultDelay = 500;
