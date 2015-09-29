@@ -38,6 +38,7 @@ It is recommended to use [lag-console] in order to control it.
 	- [Running tests](#running-tests)
 	- [Changelog](#changelog)
 	- [License](#license)
+  
 <!-- /TOC -->
 
 ## Introduction
@@ -130,7 +131,7 @@ This setting is `true` by default.
 
 If set to `true`, the package logs all of the method calls.
 
-This can help you track the server calls temporarily or figure out which methods delay/exclude.
+This can help you track the server calls temporarily or figure out which methods to delay/exclude.
 
 This setting is `false` by default.
 

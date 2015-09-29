@@ -9,7 +9,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.1');
-  api.use(['alon:lag-base']);
+  api.use(['alon:lag-base@1.0.0']);
   api.addFiles([
     'lib/globals.js',
     'lib/bootstrap.js'
@@ -18,6 +18,7 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
+  api.use('check', 'server');
   api.use('tinytest');
   api.use('alon:lag-methods');
   api.addFiles('tests/server/configs.js', 'server');
